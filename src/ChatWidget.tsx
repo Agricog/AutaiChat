@@ -7,7 +7,7 @@ interface Message {
   content: string;
 }
 
-const API_URL = 'https://autaichat-api-production.up.railway.app/api';
+const API_URL = 'https://api.autoreplychat.com/api';
 
 export default function ChatWidget() {
   const { t } = useTranslation();
