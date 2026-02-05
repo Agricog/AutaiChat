@@ -1,6 +1,9 @@
 import ChatWidget from './ChatWidget'
 
 function App() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const customerId = urlParams.get('customer') || '1';
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
       <div className="max-w-2xl text-center">
@@ -21,7 +24,7 @@ function App() {
         </div>
       </div>
       
-      <ChatWidget />
+      <ChatWidget customerId={customerId} />
     </div>
   )
 }
