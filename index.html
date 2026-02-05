@@ -1,12 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot Widget</title>
+    <title>AutoReplyChat Widget</title>
   </head>
   <body>
+    <!-- For development mode -->
     <div id="root"></div>
+    
+    <!-- For embedded mode (created dynamically by embed.js) -->
+    <div id="autoreplychat-root"></div>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
