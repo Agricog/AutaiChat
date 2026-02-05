@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ChatWidget from './ChatWidget';
 import LandingPage from './LandingPage';
 
@@ -8,9 +8,17 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/demo" element={<DemoPage />} />
+        {/* Redirect /login to backend - it will handle the actual login page */}
+        <Route path="/login" element={<BackendRedirect to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
+}
+
+// Component that forces a full page load to backend routes
+function BackendRedirect({ to }: { to: string }) {
+  window.location.href = to;
+  return <div>Redirecting...</div>;
 }
 
 function DemoPage() {
