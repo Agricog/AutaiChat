@@ -8,10 +8,15 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/demo" element={<DemoPage />} />
-        {/* Removed /login - backend handles it */}
+        <Route path="/login" element={<LoginRedirect />} />
       </Routes>
     </BrowserRouter>
   );
+}
+
+function LoginRedirect() {
+  window.location.href = 'https://api.autoreplychat.com/login';
+  return null;
 }
 
 function DemoPage() {
