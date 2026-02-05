@@ -1,4 +1,4 @@
-import { useState, } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, X, MessageCircle } from 'lucide-react';
 import { useTranslation } from './useTranslation';
 
@@ -9,11 +9,15 @@ interface Message {
 
 interface ChatWidgetProps {
   customerId: string;
+  greetingMessage?: string;
 }
 
 const API_URL = 'https://api.autoreplychat.com/api';
 
-export default function ChatWidget({ customerId }: ChatWidgetProps) {
+export default function ChatWidget({ 
+  customerId,
+  greetingMessage = "Thank you for visiting! How may we assist you today?"
+}: ChatWidgetProps) {
   const { t } = useTranslation();
   
   const [messages, setMessages] = useState<Message[]>([]);
@@ -23,6 +27,23 @@ export default function ChatWidget({ customerId }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [leadInfo, setLeadInfo] = useState({ name: '', email: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(true);
+
+  // Auto-hide greeting after 10 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowGreeting(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Hide greeting when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setShowGreeting(false);
+    }
+  }, [isOpen]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -108,9 +129,31 @@ export default function ChatWidget({ customerId }: ChatWidgetProps) {
   if (!isOpen) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
+        {/* Greeting Bubble */}
+        {showGreeting && (
+          <div className="mb-4 mr-2 animate-fade-in">
+            <div className="relative bg-white rounded-lg shadow-lg p-4 max-w-xs">
+              <button
+                onClick={() => setShowGreeting(false)}
+                className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+                aria-label="Close greeting"
+              >
+                <X size={16} />
+              </button>
+              <p className="text-sm text-gray-800 pr-4">
+                {greetingMessage}
+              </p>
+              {/* Arrow pointing to button */}
+              <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white transform rotate-45"></div>
+            </div>
+          </div>
+        )}
+
+        {/* Chat Button */}
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all"
+          onMouseEnter={() => !isOpen && setShowGreeting(true)}
+          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all hover:scale-110"
           aria-label={t('openChatButton')}
         >
           <MessageCircle size={24} />
