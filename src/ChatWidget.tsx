@@ -102,18 +102,19 @@ export default function ChatWidget({
     setShowLeadForm(false);
     
     try {
-      await fetch(`${API_URL}/chat`, {
+      await fetch(`${API_URL}/chat/lead`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: 'Lead capture',
+          name: leadInfo.name,
+          email: leadInfo.email,
           customerId: customerId,
-          lead: {
-            name: leadInfo.name,
-            email: leadInfo.email
-          }
+          conversation: messages.map(m => ({
+            role: m.role,
+            content: m.content
+          }))
         }),
       });
     } catch (error) {
@@ -125,7 +126,6 @@ export default function ChatWidget({
       content: t('thankYouMessage', { name: leadInfo.name, email: leadInfo.email })
     }]);
   };
-
   if (!isOpen) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
