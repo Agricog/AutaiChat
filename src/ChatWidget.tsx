@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, } from 'react';
 import { Send, X, MessageCircle } from 'lucide-react';
 import { useTranslation } from './useTranslation';
 
