@@ -1,11 +1,27 @@
-import ChatWidget from './ChatWidget'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ChatWidget from './ChatWidget';
+import LandingPage from './LandingPage';
 
 function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Landing page at root */}
+        <Route path="/" element={<LandingPage />} />
+        
+        {/* Demo page at /demo */}
+        <Route path="/demo" element={<DemoPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// Your existing demo page as a component
+function DemoPage() {
   const urlParams = new URLSearchParams(window.location.search);
   const customerId = urlParams.get('customer') || '1';
-  
   const greetingMessage = "Thank you for visiting! How may we assist you today?";
-
+  
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
       <div className="max-w-2xl text-center">
@@ -32,7 +48,7 @@ function App() {
         greetingMessage={greetingMessage}
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
