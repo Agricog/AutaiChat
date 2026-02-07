@@ -49,7 +49,7 @@ const jsonLd = {
       offers: {
         '@type': 'Offer',
         price: '99.00',
-        priceCurrency: 'USD',
+        priceCurrency: 'GBP',
         priceValidUntil: '2026-12-31'
       },
       featureList: [
@@ -138,7 +138,7 @@ const jsonLd = {
           name: 'How much does AutoReplyChat cost?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'AutoReplyChat costs $99 per month with everything included — unlimited conversations, unlimited document training, lead capture, custom branding, and priority support. There are no hidden fees or usage limits.'
+            text: 'After your 30-day free trial, AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, unlimited document training, lead capture, custom branding, multi-language support, and priority support.'
           }
         },
         {
@@ -154,7 +154,7 @@ const jsonLd = {
           name: 'Can the chatbot handle multiple languages?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. AutoReplyChat automatically detects your visitor\'s browser language and can respond in over 95 languages. This makes it ideal for businesses serving international customers.'
+            text: 'AutoReplyChat automatically detects your visitor\'s browser language and can respond in over 95 languages. This makes it ideal for businesses serving international customers.'
           }
         }
       ]
@@ -384,14 +384,13 @@ export default function LandingPage() {
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-full bg-slate-700 flex-shrink-0" />
                       <div className="flex-1 bg-slate-800 rounded-2xl rounded-tl-none p-4 text-sm text-slate-300">
-                        Can you integrate with Slack?
+                        Do you offer a free trial?
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-3 justify-end">
                       <div className="flex-1 bg-amber-500 rounded-2xl rounded-tr-none p-4 text-sm text-slate-950 font-medium">
-                        Yes! We have native Slack integration. 
-                        Would you like me to show you how to set it up?
+                        Absolutely! Every account starts with a 30-day free trial — full access, no credit card required.
                       </div>
                       <div className="w-8 h-8 rounded-full bg-amber-500 flex-shrink-0 flex items-center justify-center text-slate-950 font-bold text-xs">
                         AI
@@ -619,9 +618,9 @@ export default function LandingPage() {
           <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-12">
             <div className="mb-8">
               <div className="font-display text-6xl font-bold text-amber-500 mb-2">
-                $99<span className="text-2xl text-slate-400">/mo</span>
+                £99<span className="text-2xl text-slate-400">/mo</span>
               </div>
-              <p className="text-slate-400">Everything included. No hidden fees.</p>
+              <p className="text-slate-400">£300 one-time setup fee + £99/mo. 30-day free trial first.</p>
             </div>
 
             <ul className="space-y-4 mb-8 text-left max-w-md mx-auto">
@@ -699,7 +698,7 @@ export default function LandingPage() {
               },
               {
                 q: 'How much does it cost after the trial?',
-                a: 'AutoReplyChat is $99 per month with everything included — unlimited conversations, unlimited document training, lead capture, custom branding, multi-language support, and priority support. No hidden fees or usage limits.'
+                a: 'After your 30-day free trial, AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, unlimited document training, lead capture, custom branding, multi-language support, and priority support.'
               },
               {
                 q: 'Is my data secure?',
