@@ -5,41 +5,86 @@
   var botId = currentScript.getAttribute('data-bot-id');
   
   if (!botId) {
-    console.error('AutoReplyChat: Missing data-bot-id attribute');
+    console.error('AutoReplyChat: data-bot-id attribute is required');
     return;
   }
   
-  // Create iframe container
-  var container = document.createElement('div');
-  container.id = 'autoreply-chat-container';
-  container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 999999;';
+  // Fetch bot settings
+  fetch('https://api.autoreplychat.com/api/bots/' + botId + '/settings')
+    .then(function(response) { return response.json(); })
+    .then(function(settings) {
+      createWidget(botId, settings);
+    })
+    .catch(function(error) {
+      console.error('AutoReplyChat: Failed to load bot settings', error);
+      // Use defaults if settings fail
+      createWidget(botId, {});
+    });
   
-  // Create chat button
-  var button = document.createElement('div');
-  button.id = 'autoreply-chat-button';
-  button.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>';
-  button.style.cssText = 'width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: transform 0.2s;';
-  button.onmouseover = function() { this.style.transform = 'scale(1.1)'; };
-  button.onmouseout = function() { this.style.transform = 'scale(1)'; };
-  
-  // Create iframe (hidden initially)
-  var iframe = document.createElement('iframe');
-  iframe.id = 'autoreply-chat-iframe';
-  iframe.src = 'https://autoreplychat.com/chat/' + botId;
-  iframe.style.cssText = 'display: none; width: 380px; height: 550px; border: none; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); margin-bottom: 10px;';
-  iframe.setAttribute('allow', 'microphone');
-  
-  // Toggle chat
-  var isOpen = false;
-  button.onclick = function() {
-    isOpen = !isOpen;
-    iframe.style.display = isOpen ? 'block' : 'none';
-    button.innerHTML = isOpen 
-      ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>'
-      : '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>';
-  };
-  
-  container.appendChild(iframe);
-  container.appendChild(button);
-  document.body.appendChild(container);
+  function createWidget(botId, settings) {
+    var buttonStyle = settings.buttonStyle || 'circle';
+    var buttonPosition = settings.buttonPosition || 'right';
+    var buttonSize = settings.buttonSize || 60;
+    var chatBubbleBg = settings.chatBubbleBg || '#3b82f6';
+    var barMessage = settings.barMessage || 'Chat Now';
+    
+    // Create container
+    var container = document.createElement('div');
+    container.id = 'autoreply-chat-container';
+    container.style.cssText = 'position: fixed; bottom: 24px; ' + buttonPosition + ': 24px; z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;';
+    
+    // Create chat button
+    var button = document.createElement('div');
+    button.id = 'autoreply-chat-button';
+    
+    if (buttonStyle === 'bar') {
+      button.style.cssText = 'background: ' + chatBubbleBg + '; color: white; padding: 12px 20px; border-radius: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 8px; transition: transform 0.2s, opacity 0.2s;';
+      button.innerHTML = '<svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><span style="font-weight: 500;">' + barMessage + '</span>';
+    } else {
+      button.style.cssText = 'background: ' + chatBubbleBg + '; width: ' + buttonSize + 'px; height: ' + buttonSize + 'px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, opacity 0.2s;';
+      var iconSize = Math.round(buttonSize * 0.4);
+      button.innerHTML = '<svg width="' + iconSize + '" height="' + iconSize + '" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
+    }
+    
+    button.onmouseover = function() { this.style.transform = 'scale(1.05)'; };
+    button.onmouseout = function() { this.style.transform = 'scale(1)'; };
+    
+    // Create iframe container (hidden initially)
+    var iframeContainer = document.createElement('div');
+    iframeContainer.id = 'autoreply-chat-iframe-container';
+    iframeContainer.style.cssText = 'display: none; width: 380px; height: 550px; margin-bottom: 16px;';
+    
+    // Create iframe
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://autoreplychat.com/chat/' + botId;
+    iframe.style.cssText = 'width: 100%; height: 100%; border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.15);';
+    iframe.allow = 'microphone';
+    
+    iframeContainer.appendChild(iframe);
+    
+    // Toggle function
+    var isOpen = false;
+    button.onclick = function() {
+      isOpen = !isOpen;
+      if (isOpen) {
+        iframeContainer.style.display = 'block';
+        if (buttonStyle === 'bar') {
+          button.innerHTML = '<svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg><span style="font-weight: 500;">Close</span>';
+        } else {
+          button.innerHTML = '<svg width="' + iconSize + '" height="' + iconSize + '" fill="white" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+        }
+      } else {
+        iframeContainer.style.display = 'none';
+        if (buttonStyle === 'bar') {
+          button.innerHTML = '<svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><span style="font-weight: 500;">' + barMessage + '</span>';
+        } else {
+          button.innerHTML = '<svg width="' + iconSize + '" height="' + iconSize + '" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
+        }
+      }
+    };
+    
+    container.appendChild(iframeContainer);
+    container.appendChild(button);
+    document.body.appendChild(container);
+  }
 })();
