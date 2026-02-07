@@ -103,7 +103,7 @@ export default function LandingPage() {
               Pricing
             </a>
             <a 
-              href="/login" 
+              href="https://api.autoreplychat.com/login" 
               className="px-5 py-2 bg-amber-500 text-slate-950 rounded-lg font-medium hover:bg-amber-400 transition-all hover:scale-105 text-sm"
             >
               Get Started
@@ -138,7 +138,7 @@ export default function LandingPage() {
               
               <div className={`flex flex-col sm:flex-row gap-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                 <a 
-                  href="/login" 
+                  href="https://api.autoreplychat.com/signup" 
                   className="px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/20 text-center"
                 >
                   Start Free Trial
@@ -325,7 +325,7 @@ export default function LandingPage() {
               Impressed? Get your own AI assistant in under 5 minutes.
             </p>
             <a 
-              href="/login" 
+              href="https://api.autoreplychat.com/signup" 
               className="inline-block px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105"
             >
               Start Your Free Trial
@@ -373,7 +373,7 @@ export default function LandingPage() {
             </ul>
 
             <a 
-              href="/login" 
+              href="https://api.autoreplychat.com/signup" 
               className="inline-block px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105 w-full max-w-md"
             >
               Start Free Trial →
@@ -395,7 +395,7 @@ export default function LandingPage() {
             Join hundreds of teams using AutoReplyChat to deliver instant, accurate answers to every customer question.
           </p>
           <a 
-            href="/login" 
+            href="https://api.autoreplychat.com/signup" 
             className="inline-block px-12 py-5 bg-amber-500 text-slate-950 rounded-lg font-bold text-xl hover:bg-amber-400 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/20"
           >
             Get Started Free
