@@ -417,7 +417,7 @@ export default function LandingPage() {
                 <span className="text-slate-100">ReplyChat</span>
               </div>
               <div className="text-sm text-slate-400 space-y-1">
-                <p>AI-powered customer support by <span className="text-slate-300">Autaimate</span></p>
+                <p>AI-powered customer support by <a href="https://autaimate.com" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-amber-500 transition-colors">Autaimate</a></p>
                 <p>
                   <a href="mailto:mick@autoreplychat.com" className="hover:text-amber-500 transition-colors">
                     mick@autoreplychat.com
