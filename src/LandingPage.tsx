@@ -409,16 +409,35 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-slate-800/50 py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="font-display text-xl font-bold">
-              <span className="text-amber-500">Auto</span>
-              <span className="text-slate-100">ReplyChat</span>
+          <div className="flex flex-col md:flex-row justify-between items-start gap-10">
+            {/* Brand & Contact */}
+            <div className="space-y-4">
+              <div className="font-display text-xl font-bold">
+                <span className="text-amber-500">Auto</span>
+                <span className="text-slate-100">ReplyChat</span>
+              </div>
+              <div className="text-sm text-slate-400 space-y-1">
+                <p>AI-powered customer support by <span className="text-slate-300">Autaimate</span></p>
+                <p>
+                  <a href="mailto:mick@autoreplychat.com" className="hover:text-amber-500 transition-colors">
+                    mick@autoreplychat.com
+                  </a>
+                </p>
+                <p>
+                  <a href="tel:+447501439406" className="hover:text-amber-500 transition-colors">
+                    07501 439406
+                  </a>
+                </p>
+              </div>
             </div>
+
+            {/* Links */}
             <div className="flex gap-8 text-sm text-slate-400">
-              <a href="#" className="hover:text-amber-500 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-amber-500 transition-colors">Terms</a>
-              <a href="#" className="hover:text-amber-500 transition-colors">Contact</a>
+              <a href="/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="hover:text-amber-500 transition-colors">Terms of Service</a>
             </div>
+
+            {/* Copyright */}
             <div className="text-sm text-slate-500">
               © 2026 AutoReplyChat. All rights reserved.
             </div>
