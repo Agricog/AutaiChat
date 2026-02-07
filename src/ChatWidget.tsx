@@ -26,6 +26,7 @@ interface ChatWidgetProps {
   userMessageBg?: string;
   botMessageBg?: string;
   sendButtonBg?: string;
+  leadFormMessage?: string;
 }
 
 const API_URL = 'https://api.autoreplychat.com/api';
@@ -52,7 +53,8 @@ export default function ChatWidget({
   chatWindowBg = "#ffffff",
   userMessageBg = "#3b82f6",
   botMessageBg = "#f3f4f6",
-  sendButtonBg = "#3b82f6"
+  sendButtonBg = "#3b82f6",
+  leadFormMessage = "Want personalized help? Leave your details and we'll follow up"
 }: ChatWidgetProps) {
   const { t } = useTranslation();
   
@@ -318,8 +320,7 @@ export default function ChatWidget({
         <div className="bg-blue-50 border-t border-blue-200 p-4 space-y-3">
           <div className="flex items-start justify-between">
             <div>
-              <p className="font-medium text-blue-900 text-sm">{t('leadFormTitle')}</p>
-              <p className="text-xs text-blue-700">{t('leadFormSubtitle')}</p>
+              <p className="font-medium text-blue-900 text-sm">{leadFormMessage}</p>
             </div>
             <button
               onClick={() => setShowLeadForm(false)}
