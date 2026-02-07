@@ -1,8 +1,7 @@
 (function() {
-  // Get bot ID from script tag
-  var scripts = document.getElementsByTagName('script');
-  var currentScript = scripts[scripts.length - 1];
-  var botId = currentScript.getAttribute('data-bot-id');
+  // Get bot ID from script tag - find by src attribute for defer compatibility
+  var currentScript = document.currentScript || document.querySelector('script[src*="embed.js"]');
+  var botId = currentScript ? currentScript.getAttribute('data-bot-id') : null;
   
   if (!botId) {
     console.error('AutoReplyChat: data-bot-id attribute is required');
