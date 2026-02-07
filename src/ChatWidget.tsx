@@ -8,15 +8,19 @@ interface Message {
 }
 
 interface ChatWidgetProps {
-  customerId: string;
+  customerId?: string;
+  botId?: string;
   greetingMessage?: string;
+  embedded?: boolean;
 }
 
 const API_URL = 'https://api.autoreplychat.com/api';
 
 export default function ChatWidget({ 
   customerId,
-  greetingMessage = "Thank you for visiting! How may we assist you today?"
+  botId,
+  greetingMessage = "Thank you for visiting! How may we assist you today?",
+  embedded = false
 }: ChatWidgetProps) {
   const { t } = useTranslation();
   
@@ -24,24 +28,26 @@ export default function ChatWidget({
   const [input, setInput] = useState('');
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadCaptured, setLeadCaptured] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(embedded);
   const [leadInfo, setLeadInfo] = useState({ name: '', email: '' });
   const [isLoading, setIsLoading] = useState(false);
-  const [showGreeting, setShowGreeting] = useState(true);
+  const [showGreeting, setShowGreeting] = useState(!embedded);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-useEffect(() => {
-  messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-}, [messages, isLoading]);
-
-  // Auto-hide greeting after 10 seconds
   useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isLoading]);
+
+  // Auto-hide greeting after 10 seconds (only in non-embedded mode)
+  useEffect(() => {
+    if (embedded) return;
+    
     const timer = setTimeout(() => {
       setShowGreeting(false);
     }, 10000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [embedded]);
 
   // Hide greeting when chat opens
   useEffect(() => {
@@ -66,7 +72,8 @@ useEffect(() => {
         },
         body: JSON.stringify({
           message: input,
-          customerId: customerId,
+          botId: botId || undefined,
+          customerId: customerId || undefined,
           conversationHistory: messages.map(m => ({
             role: m.role === 'system' ? 'assistant' : m.role,
             content: m.content
@@ -115,7 +122,8 @@ useEffect(() => {
         body: JSON.stringify({
           name: leadInfo.name,
           email: leadInfo.email,
-          customerId: customerId,
+          botId: botId || undefined,
+          customerId: customerId || undefined,
           conversation: messages.map(m => ({
             role: m.role,
             content: m.content
@@ -131,7 +139,9 @@ useEffect(() => {
       content: t('thankYouMessage', { name: leadInfo.name, email: leadInfo.email })
     }]);
   };
-  if (!isOpen) {
+
+  // Floating button mode (non-embedded, chat closed)
+  if (!isOpen && !embedded) {
     return (
       <div className="fixed bottom-6 right-6 z-50">
         {/* Greeting Bubble */}
@@ -167,20 +177,27 @@ useEffect(() => {
     );
   }
 
+  // Chat window (embedded or floating open)
+  const containerClass = embedded
+    ? "w-full h-[550px] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200"
+    : "fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200 z-50";
+
   return (
-    <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200 z-50">
+    <div className={containerClass}>
       <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
         <div>
           <h3 className="font-semibold">{t('headerTitle')}</h3>
           <p className="text-xs text-blue-100">{t('headerSubtitle')}</p>
         </div>
-        <button 
-          onClick={() => setIsOpen(false)}
-          className="text-white hover:bg-blue-700 rounded p-1"
-          aria-label={t('closeButton')}
-        >
-          <X size={20} />
-        </button>
+        {!embedded && (
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="text-white hover:bg-blue-700 rounded p-1"
+            aria-label={t('closeButton')}
+          >
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
