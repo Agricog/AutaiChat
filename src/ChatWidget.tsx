@@ -20,6 +20,11 @@ interface ChatWidgetProps {
 
 const API_URL = 'https://api.autoreplychat.com/api';
 
+// Generate unique session ID
+function generateSessionId() {
+  return 'sess_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+
 export default function ChatWidget({ 
   customerId,
   botId,
@@ -40,6 +45,7 @@ export default function ChatWidget({
   const [leadInfo, setLeadInfo] = useState({ name: '', email: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [showGreeting, setShowGreeting] = useState(!embedded);
+  const [sessionId] = useState(() => generateSessionId());
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -82,6 +88,7 @@ export default function ChatWidget({
           message: input,
           botId: botId || undefined,
           customerId: customerId || undefined,
+          sessionId: sessionId,
           conversationHistory: messages.map(m => ({
             role: m.role === 'system' ? 'assistant' : m.role,
             content: m.content
@@ -132,6 +139,7 @@ export default function ChatWidget({
           email: leadInfo.email,
           botId: botId || undefined,
           customerId: customerId || undefined,
+          sessionId: sessionId,
           conversation: messages.map(m => ({
             role: m.role,
             content: m.content
