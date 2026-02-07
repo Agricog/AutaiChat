@@ -45,7 +45,6 @@ export default function ChatWidget({
   textColor = "#ffffff",
   leadCaptureEnabled = true,
   chatBubbleBg = "#3b82f6",
-  avatarBg = "#e0e0e0",
   buttonStyle = "circle",
   buttonPosition = "right",
   buttonSize = 60,
