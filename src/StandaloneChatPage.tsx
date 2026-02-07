@@ -10,6 +10,16 @@ interface BotSettings {
   headerColor: string;
   textColor: string;
   leadCaptureEnabled: boolean;
+  chatBubbleBg: string;
+  avatarBg: string;
+  buttonStyle: string;
+  buttonPosition: string;
+  buttonSize: number;
+  barMessage: string;
+  chatWindowBg: string;
+  userMessageBg: string;
+  botMessageBg: string;
+  sendButtonBg: string;
 }
 
 function StandaloneChatPage() {
@@ -83,6 +93,16 @@ function StandaloneChatPage() {
           headerColor={settings?.headerColor}
           textColor={settings?.textColor}
           leadCaptureEnabled={settings?.leadCaptureEnabled}
+          chatBubbleBg={settings?.chatBubbleBg}
+          avatarBg={settings?.avatarBg}
+          buttonStyle={settings?.buttonStyle}
+          buttonPosition={settings?.buttonPosition}
+          buttonSize={settings?.buttonSize}
+          barMessage={settings?.barMessage}
+          chatWindowBg={settings?.chatWindowBg}
+          userMessageBg={settings?.userMessageBg}
+          botMessageBg={settings?.botMessageBg}
+          sendButtonBg={settings?.sendButtonBg}
         />
       </div>
     </div>
