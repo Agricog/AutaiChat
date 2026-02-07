@@ -16,6 +16,16 @@ interface ChatWidgetProps {
   headerColor?: string;
   textColor?: string;
   leadCaptureEnabled?: boolean;
+  chatBubbleBg?: string;
+  avatarBg?: string;
+  buttonStyle?: string;
+  buttonPosition?: string;
+  buttonSize?: number;
+  barMessage?: string;
+  chatWindowBg?: string;
+  userMessageBg?: string;
+  botMessageBg?: string;
+  sendButtonBg?: string;
 }
 
 const API_URL = 'https://api.autoreplychat.com/api';
@@ -33,7 +43,17 @@ export default function ChatWidget({
   headerTitle = "Support Assistant",
   headerColor = "#3b82f6",
   textColor = "#ffffff",
-  leadCaptureEnabled = true
+  leadCaptureEnabled = true,
+  chatBubbleBg = "#3b82f6",
+  avatarBg = "#e0e0e0",
+  buttonStyle = "circle",
+  buttonPosition = "right",
+  buttonSize = 60,
+  barMessage = "Chat Now",
+  chatWindowBg = "#ffffff",
+  userMessageBg = "#3b82f6",
+  botMessageBg = "#f3f4f6",
+  sendButtonBg = "#3b82f6"
 }: ChatWidgetProps) {
   const { t } = useTranslation();
   
@@ -158,8 +178,10 @@ export default function ChatWidget({
 
   // Floating button mode (non-embedded, chat closed)
   if (!isOpen && !embedded) {
+    const positionClass = buttonPosition === 'left' ? 'left-6' : 'right-6';
+    
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className={`fixed bottom-6 ${positionClass} z-50`}>
         {/* Greeting Bubble */}
         {showGreeting && (
           <div className="mb-4 mr-2 animate-fade-in">
@@ -180,16 +202,36 @@ export default function ChatWidget({
           </div>
         )}
 
-        {/* Chat Button */}
-        <button
-          onClick={() => setIsOpen(true)}
-          onMouseEnter={() => !isOpen && setShowGreeting(true)}
-          style={{ backgroundColor: headerColor }}
-          className="hover:opacity-90 text-white rounded-full p-4 shadow-lg transition-all hover:scale-110"
-          aria-label={t('openChatButton')}
-        >
-          <MessageCircle size={24} />
-        </button>
+        {/* Chat Button - Circle Style */}
+        {buttonStyle === 'circle' && (
+          <button
+            onClick={() => setIsOpen(true)}
+            onMouseEnter={() => !isOpen && setShowGreeting(true)}
+            style={{ 
+              backgroundColor: chatBubbleBg,
+              width: `${buttonSize}px`,
+              height: `${buttonSize}px`
+            }}
+            className="hover:opacity-90 text-white rounded-full shadow-lg transition-all hover:scale-110 flex items-center justify-center"
+            aria-label={t('openChatButton')}
+          >
+            <MessageCircle size={buttonSize * 0.4} />
+          </button>
+        )}
+        
+        {/* Chat Button - Bar Style */}
+        {buttonStyle === 'bar' && (
+          <button
+            onClick={() => setIsOpen(true)}
+            onMouseEnter={() => !isOpen && setShowGreeting(true)}
+            style={{ backgroundColor: chatBubbleBg }}
+            className="hover:opacity-90 text-white rounded-full px-5 py-3 shadow-lg transition-all hover:scale-105 flex items-center gap-2"
+            aria-label={t('openChatButton')}
+          >
+            <MessageCircle size={20} />
+            <span className="font-medium">{barMessage}</span>
+          </button>
+        )}
       </div>
     );
   }
@@ -223,7 +265,7 @@ export default function ChatWidget({
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ backgroundColor: chatWindowBg }}>
         {messages.length === 0 && (
           <div className="text-center text-gray-500 mt-8">
             <MessageCircle size={48} className="mx-auto mb-3 text-gray-300" />
@@ -242,9 +284,15 @@ export default function ChatWidget({
                   ? 'text-white'
                   : msg.role === 'system'
                   ? 'bg-green-100 text-green-800 text-sm'
-                  : 'bg-white text-gray-800 border border-gray-200'
+                  : 'text-gray-800'
               }`}
-              style={msg.role === 'user' ? { backgroundColor: headerColor } : {}}
+              style={
+                msg.role === 'user' 
+                  ? { backgroundColor: userMessageBg } 
+                  : msg.role === 'assistant'
+                  ? { backgroundColor: botMessageBg }
+                  : {}
+              }
             >
               {msg.content}
             </div>
@@ -253,7 +301,7 @@ export default function ChatWidget({
 
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-white text-gray-800 border border-gray-200 rounded-lg px-4 py-2">
+            <div className="text-gray-800 rounded-lg px-4 py-2" style={{ backgroundColor: botMessageBg }}>
               <div className="flex space-x-2">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
@@ -328,7 +376,7 @@ export default function ChatWidget({
           <button
             onClick={handleSend}
             disabled={isLoading}
-            style={{ backgroundColor: isLoading ? '#9ca3af' : headerColor }}
+            style={{ backgroundColor: isLoading ? '#9ca3af' : sendButtonBg }}
             className="hover:opacity-90 text-white p-2 rounded-lg transition-colors disabled:cursor-not-allowed"
             aria-label={t('sendButton')}
           >
