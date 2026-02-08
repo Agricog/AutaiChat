@@ -25,6 +25,8 @@
     var headerColor = settings.headerColor || '#3b82f6';
     var textColor = settings.textColor || '#ffffff';
     var barMessage = settings.barMessage || 'Chat Now';
+    var greetingMessage = settings.greetingMessage || 'Thank you for visiting! How may we assist you today?';
+    var greetingBubbleEnabled = settings.greetingBubbleEnabled !== false;
     
     function isMobile() {
       return window.innerWidth <= 500;
@@ -45,6 +47,47 @@
     var container = document.createElement('div');
     container.id = 'autoreply-chat-container';
     container.style.cssText = 'position: fixed; bottom: 24px; ' + buttonPosition + ': 24px; z-index: 9999; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;';
+    
+    // Create greeting bubble (only if enabled)
+    var greetingBubble = null;
+    if (greetingBubbleEnabled) {
+      greetingBubble = document.createElement('div');
+      greetingBubble.id = 'autoreply-chat-greeting';
+      greetingBubble.style.cssText = 'margin-bottom: 12px; margin-right: 4px; animation: autoreply-fade-in 0.3s ease-out;';
+      
+      var bubbleInner = document.createElement('div');
+      bubbleInner.style.cssText = 'position: relative; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 12px 40px 12px 16px; max-width: 260px;';
+      
+      var greetingText = document.createElement('p');
+      greetingText.style.cssText = 'margin: 0; font-size: 14px; color: #1e293b; line-height: 1.4;';
+      greetingText.textContent = greetingMessage;
+      
+      var greetingClose = document.createElement('button');
+      greetingClose.style.cssText = 'position: absolute; top: 8px; right: 8px; background: none; border: none; cursor: pointer; padding: 4px; color: #94a3b8; font-size: 18px; line-height: 1;';
+      greetingClose.innerHTML = '&times;';
+      greetingClose.setAttribute('aria-label', 'Close greeting');
+      greetingClose.onclick = function() {
+        if (greetingBubble) greetingBubble.style.display = 'none';
+      };
+      
+      var arrow = document.createElement('div');
+      arrow.style.cssText = 'position: absolute; bottom: -6px; right: 24px; width: 12px; height: 12px; background: white; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,0.05);';
+      
+      bubbleInner.appendChild(greetingText);
+      bubbleInner.appendChild(greetingClose);
+      bubbleInner.appendChild(arrow);
+      greetingBubble.appendChild(bubbleInner);
+      
+      // Add fade-in animation
+      var greetingStyle = document.createElement('style');
+      greetingStyle.textContent = '@keyframes autoreply-fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}';
+      document.head.appendChild(greetingStyle);
+      
+      // Auto-hide after 10 seconds
+      setTimeout(function() {
+        if (greetingBubble) greetingBubble.style.display = 'none';
+      }, 10000);
+    }
     
     // Create chat button
     var button = document.createElement('div');
@@ -98,6 +141,8 @@
     function openChat() {
       isOpen = true;
       iframeContainer.style.display = 'block';
+      // Hide greeting when chat opens
+      if (greetingBubble) greetingBubble.style.display = 'none';
       if (isMobile()) {
         closeBtn.classList.add('is-open');
         button.style.display = 'none';
@@ -124,7 +169,9 @@
       closeChat();
     };
     
+    // Add elements to container
     container.appendChild(iframeContainer);
+    if (greetingBubble) container.appendChild(greetingBubble);
     container.appendChild(button);
     document.body.appendChild(container);
     document.body.appendChild(closeBtn);
