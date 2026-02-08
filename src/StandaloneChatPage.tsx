@@ -4,6 +4,7 @@ import ChatWidget from './ChatWidget';
 
 interface BotSettings {
   botId: number;
+  customerId: number;
   name: string;
   greetingMessage: string;
   headerTitle: string;
@@ -21,6 +22,7 @@ interface BotSettings {
   botMessageBg: string;
   sendButtonBg: string;
   leadFormMessage: string;
+  isTrial: boolean;
 }
 
 function StandaloneChatPage() {
@@ -88,6 +90,7 @@ function StandaloneChatPage() {
       <div className="w-full max-w-md">
         <ChatWidget 
           botId={botId}
+          customerId={settings?.customerId?.toString()}
           embedded={true}
           greetingMessage={settings?.greetingMessage}
           headerTitle={settings?.headerTitle}
@@ -105,6 +108,7 @@ function StandaloneChatPage() {
           botMessageBg={settings?.botMessageBg}
           sendButtonBg={settings?.sendButtonBg}
           leadFormMessage={settings?.leadFormMessage}
+          isTrial={settings?.isTrial}
         />
       </div>
     </div>
