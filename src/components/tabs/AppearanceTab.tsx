@@ -26,6 +26,26 @@ interface Props {
   refreshData: () => void;
 }
 
+const labelClass = 'block text-sm font-medium text-slate-700 mb-1.5';
+
+function ColorInput({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+  return (
+    <div>
+      <label className={labelClass}>{label}</label>
+      <div className="flex gap-3 items-center">
+        <input type="color" value={value} onChange={e => onChange(e.target.value)} className="w-14 h-10 border border-slate-200 rounded-lg cursor-pointer" />
+        <input type="text" value={value} onChange={e => onChange(e.target.value)} className="w-24 px-3 py-2 border border-slate-200 rounded-lg text-sm" />
+      </div>
+    </div>
+  );
+}
+
+function ToggleBtn({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) {
+  return (
+    <button onClick={onClick} className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${active ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'}`}>{label}</button>
+  );
+}
+
 export default function AppearanceTab({ customerId, botId, bot, showAlert }: Props) {
   const [headerTitle, setHeaderTitle] = useState(bot.header_title || 'Support Assistant');
   const [headerColor, setHeaderColor] = useState(bot.header_color || '#3b82f6');
@@ -74,21 +94,7 @@ export default function AppearanceTab({ customerId, botId, bot, showAlert }: Pro
   const headerCls = 'px-5 py-4 border-b border-slate-200';
   const bodyCls = 'px-5 py-5';
   const inputCls = 'w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
-  const labelCls = 'block text-sm font-medium text-slate-700 mb-1.5';
-
-  const ColorInput = ({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) => (
-    <div>
-      <label className={labelCls}>{label}</label>
-      <div className="flex gap-3 items-center">
-        <input type="color" value={value} onChange={e => onChange(e.target.value)} className="w-14 h-10 border border-slate-200 rounded-lg cursor-pointer" />
-        <input type="text" value={value} onChange={e => onChange(e.target.value)} className="w-24 px-3 py-2 border border-slate-200 rounded-lg text-sm" />
-      </div>
-    </div>
-  );
-
-  const ToggleBtn = ({ active, onClick, label }: { active: boolean; onClick: () => void; label: string }) => (
-    <button onClick={onClick} className={`px-4 py-2 text-sm font-medium rounded-lg border transition ${active ? 'bg-blue-500 text-white border-blue-500' : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'}`}>{label}</button>
-  );
+  const labelCls = labelClass;
 
   return (
     <div>
