@@ -36,6 +36,26 @@ function generateSessionId() {
   return 'sess_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
 }
 
+// Simple markdown to HTML renderer
+function renderMarkdown(text: string) {
+  let html = text
+    // Escape HTML first
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    // Bold: **text**
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Italic: *text*
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    // Links: [text](url)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">$1</a>')
+    // Plain URLs (not already in a link)
+    .replace(/(?<!href=")(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: underline;">$1</a>')
+    // Line breaks
+    .replace(/\n/g, '<br/>');
+  return html;
+}
+
 export default function ChatWidget({ 
   customerId,
   botId,
@@ -334,7 +354,11 @@ export default function ChatWidget({
                   : {}
               }
             >
-              {msg.content}
+              {msg.role === 'assistant' ? (
+                <span dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }} />
+              ) : (
+                msg.content
+              )}
             </div>
           </div>
         ))}
