@@ -4,6 +4,7 @@ import LandingPage from './LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import StandaloneChatPage from './StandaloneChatPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/demo" element={<DemoPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/chat/:botId" element={<StandaloneChatPage />} />
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <DashboardPage />
