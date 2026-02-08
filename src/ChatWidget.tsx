@@ -66,8 +66,17 @@ export default function ChatWidget({
   const [leadInfo, setLeadInfo] = useState({ name: '', email: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [showGreeting, setShowGreeting] = useState(!embedded);
+  const [isMobile, setIsMobile] = useState(false);
   const [sessionId] = useState(() => generateSessionId());
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -237,13 +246,37 @@ export default function ChatWidget({
     );
   }
 
-  // Chat window (embedded or floating open)
+  // Chat window styles - fullscreen on mobile, floating card on desktop
+  const containerStyle: React.CSSProperties = embedded
+    ? {}
+    : isMobile
+    ? {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 9999,
+      }
+    : {
+        position: 'fixed',
+        bottom: '24px',
+        right: '24px',
+        width: '384px',
+        height: '600px',
+        borderRadius: '8px',
+        border: '1px solid #e5e7eb',
+        zIndex: 9999,
+      };
+
   const containerClass = embedded
     ? "w-full h-[550px] bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden border border-gray-200"
-    : "fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 w-full sm:w-96 h-full sm:h-[600px] bg-white sm:rounded-lg shadow-2xl flex flex-col overflow-hidden sm:border border-gray-200 z-50";
+    : "bg-white shadow-2xl flex flex-col overflow-hidden";
 
   return (
-    <div className={containerClass}>
+    <div className={containerClass} style={containerStyle}>
       {/* Header */}
       <div 
         style={{ backgroundColor: headerColor, color: textColor }} 
@@ -254,15 +287,22 @@ export default function ChatWidget({
           <p className="text-xs" style={{ opacity: 0.8 }}>{t('headerSubtitle')}</p>
         </div>
         {!embedded && (
-  <button 
-    onClick={() => setIsOpen(false)}
-    style={{ color: textColor }}
-    className="hover:opacity-70 rounded p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
-    aria-label={t('closeButton')}
-  >
-    <X size={24} />
-  </button>
-)}
+          <button 
+            onClick={() => setIsOpen(false)}
+            style={{ 
+              color: textColor,
+              minWidth: '44px',
+              minHeight: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            className="hover:opacity-70 rounded p-2"
+            aria-label={t('closeButton')}
+          >
+            <X size={24} />
+          </button>
+        )}
       </div>
 
       {/* Messages Area */}
