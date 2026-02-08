@@ -10,7 +10,7 @@ const jsonLd = {
       name: 'AutoReplyChat',
       url: 'https://autoreplychat.com',
       logo: 'https://autoreplychat.com/og-image.png',
-      description: 'AI-powered customer support chatbot platform for businesses.',
+      description: 'Fully managed AI chatbot service for businesses. We build, train, and maintain your AI customer support chatbot.',
       founder: {
         '@type': 'Person',
         name: 'Mick',
@@ -32,8 +32,8 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': 'https://autoreplychat.com/#webpage',
       url: 'https://autoreplychat.com',
-      name: 'AutoReplyChat | AI Customer Support Chatbot for Your Website',
-      description: 'Train AI on your docs and deploy a customer support chatbot in minutes. Lead capture, branded widget, 24/7 instant answers. 30-day free trial.',
+      name: 'AutoReplyChat | Fully Managed AI Chatbot for Your Website',
+      description: 'We build, train, and manage a custom AI chatbot for your website. You just add one line of code. Powered by Claude AI.',
       isPartOf: { '@id': 'https://autoreplychat.com/#organization' },
       speakable: {
         '@type': 'SpeakableSpecification',
@@ -41,25 +41,24 @@ const jsonLd = {
       }
     },
     {
-      '@type': 'SoftwareApplication',
-      name: 'AutoReplyChat',
-      applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
-      description: 'AI-powered customer support chatbot that trains on your documentation and answers customer questions 24/7.',
+      '@type': 'Service',
+      name: 'AutoReplyChat Managed Chatbot',
+      serviceType: 'AI Chatbot Management',
+      provider: { '@id': 'https://autoreplychat.com/#organization' },
+      description: 'Fully managed AI chatbot service. We handle setup, training, customisation, and ongoing maintenance. You just paste one line of code on your website.',
       offers: {
         '@type': 'Offer',
         price: '99.00',
         priceCurrency: 'GBP',
-        priceValidUntil: '2026-12-31'
+        priceValidUntil: '2026-12-31',
+        description: '£300 one-time setup fee plus £99 per month'
       },
       featureList: [
-        'AI chatbot trained on your documents',
-        'Lead capture with email notifications',
-        'Customisable branded widget',
-        'PDF, Word, CSV file upload training',
-        'Website scraping for content training',
-        'YouTube transcript extraction',
-        'Multi-language support',
+        'Custom AI chatbot trained on your content',
+        'Built-in lead capture with email notifications',
+        'Fully branded to match your website',
+        'Multi-language support for 95+ languages',
+        'Ongoing maintenance and updates',
         'One-line embed code installation'
       ]
     },
@@ -82,31 +81,31 @@ const jsonLd = {
           name: 'How does AutoReplyChat work?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Upload your documentation (PDFs, Word files, website URLs, or YouTube videos) and AutoReplyChat uses Claude AI to train a chatbot that answers customer questions based on your content. Simply add one line of code to your website to deploy the widget.'
+            text: 'We build a custom AI chatbot trained on your website content, documents, and any other material you provide. Once it is ready, you paste one line of code on your website and the chatbot goes live. We handle everything — you never need to touch a dashboard or manage anything.'
           }
         },
         {
           '@type': 'Question',
-          name: 'What file types can I use to train my chatbot?',
+          name: 'What do I need to provide?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'AutoReplyChat supports PDF documents, Microsoft Word files, plain text files, CSV spreadsheets (up to 20MB each), website scraping (single page or full site), and YouTube video transcript extraction.'
+            text: 'It depends on your business. At minimum, we just need your website URL and we will scrape the content. If you have additional documents like PDFs, brochures, or FAQs, we can train the chatbot on those too. We will discuss your needs when you get in touch.'
           }
         },
         {
           '@type': 'Question',
-          name: 'How long does it take to set up?',
+          name: 'How long does setup take?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Most businesses are up and running in under 5 minutes. Create an account, upload your content, customise your widget colours, and paste the embed code on your website. Your chatbot starts answering questions immediately.'
+            text: 'Most chatbots are built, trained, and ready to go live within 24 to 48 hours of receiving your content. Complex setups with large amounts of documentation may take a little longer.'
           }
         },
         {
           '@type': 'Question',
-          name: 'Does AutoReplyChat capture leads?',
+          name: 'Does the chatbot capture leads?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. AutoReplyChat includes built-in lead capture that collects visitor names, email addresses, and phone numbers. You receive instant email notifications whenever a new lead engages with your chatbot.'
+            text: 'Yes. The chatbot includes built-in lead capture that collects visitor names, email addresses, and phone numbers. You receive instant email notifications whenever a new lead engages with your chatbot.'
           }
         },
         {
@@ -114,31 +113,23 @@ const jsonLd = {
           name: 'What AI model powers the chatbot?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'AutoReplyChat is powered by Claude AI from Anthropic, one of the most capable and safe AI models available. Claude provides accurate, helpful responses grounded in your uploaded documentation.'
+            text: 'AutoReplyChat is powered by Claude AI from Anthropic, one of the most capable and safe AI models available. Claude provides accurate, helpful responses grounded in your content rather than making things up.'
           }
         },
         {
           '@type': 'Question',
-          name: 'Can I customise how the chatbot looks?',
+          name: 'Will the chatbot match my website branding?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. You can fully customise the widget colours, header text, welcome message, position on your page, and chat bubble style to match your brand. All customisation is done through the dashboard with a live preview.'
+            text: 'Yes. We fully customise the chatbot colours, header text, welcome message, and position to match your brand. It looks and feels like a native part of your website.'
           }
         },
         {
           '@type': 'Question',
-          name: 'Is there a free trial?',
+          name: 'How much does it cost?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. Every new account gets a 30-day free trial with full access to all features including unlimited conversations, document uploads, lead capture, and custom branding. No credit card required to start.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'How much does AutoReplyChat cost?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'After your 30-day free trial, AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, unlimited document training, lead capture, custom branding, multi-language support, and priority support.'
+            text: 'AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, lead capture, custom branding, multi-language support, and ongoing maintenance. We offer a 30-day free trial so you can see it working before you pay.'
           }
         },
         {
@@ -146,7 +137,7 @@ const jsonLd = {
           name: 'Is my data secure?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. AutoReplyChat uses enterprise-grade security including encrypted databases, bcrypt password hashing, session-based authentication, and strict tenant isolation. Your data is never shared with or accessible to other customers.'
+            text: 'Yes. We use enterprise-grade security including encrypted databases, bcrypt password hashing, session-based authentication, and strict tenant isolation. Your data is never shared with or accessible to other customers.'
           }
         },
         {
@@ -154,7 +145,15 @@ const jsonLd = {
           name: 'Can the chatbot handle multiple languages?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'AutoReplyChat automatically detects your visitor\'s browser language and can respond in over 95 languages. This makes it ideal for businesses serving international customers.'
+            text: 'Yes. The chatbot automatically detects your visitor\'s browser language and can respond in over 95 languages. Ideal for businesses with international customers.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Do I need any technical knowledge?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. We handle everything — building, training, branding, and maintaining your chatbot. The only thing you need to do is paste one line of code on your website, and we will walk you through that too if needed.'
           }
         }
       ]
@@ -182,18 +181,18 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 overflow-x-hidden">
       <Helmet>
-        <title>AutoReplyChat | AI Customer Support Chatbot for Your Website</title>
-        <meta name="description" content="Train AI on your docs and deploy a customer support chatbot in minutes. Lead capture, branded widget, 24/7 instant answers. 30-day free trial." />
+        <title>AutoReplyChat | Fully Managed AI Chatbot for Your Website</title>
+        <meta name="description" content="We build, train, and manage a custom AI chatbot for your website. Lead capture, branded widget, 24/7 instant answers. 30-day free trial." />
         <link rel="canonical" href="https://autoreplychat.com" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://autoreplychat.com" />
-        <meta property="og:title" content="AutoReplyChat | AI Customer Support Chatbot for Your Website" />
-        <meta property="og:description" content="Train AI on your docs and deploy a customer support chatbot in minutes. Lead capture, branded widget, 24/7 instant answers." />
+        <meta property="og:title" content="AutoReplyChat | Fully Managed AI Chatbot for Your Website" />
+        <meta property="og:description" content="We build, train, and manage a custom AI chatbot for your website. Lead capture, branded widget, 24/7 instant answers." />
         <meta property="og:image" content="https://autoreplychat.com/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AutoReplyChat | AI Customer Support Chatbot" />
-        <meta name="twitter:description" content="Train AI on your docs and deploy a customer support chatbot in minutes. 30-day free trial." />
+        <meta name="twitter:title" content="AutoReplyChat | Fully Managed AI Chatbot" />
+        <meta name="twitter:description" content="We build, train, and manage a custom AI chatbot for your website. 30-day free trial." />
         <meta name="twitter:image" content="https://autoreplychat.com/og-image.png" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
@@ -266,7 +265,7 @@ export default function LandingPage() {
 
       {/* Quick Answer Box for Voice Search / AI Snippets */}
       <div className="quick-answer sr-only" aria-hidden="true">
-        AutoReplyChat is an AI-powered customer support chatbot that trains on your documentation and answers customer questions 24/7 on your website.
+        AutoReplyChat is a fully managed AI chatbot service. We build, train, and maintain a custom chatbot for your website so you can answer customer questions 24/7.
       </div>
 
       {/* Navigation */}
@@ -293,10 +292,10 @@ export default function LandingPage() {
               FAQ
             </a>
             <a 
-              href="https://api.autoreplychat.com/login" 
+              href="#contact" 
               className="px-5 py-2 bg-amber-500 text-slate-950 rounded-lg font-medium hover:bg-amber-400 transition-all hover:scale-105 text-sm"
             >
-              Get Started
+              Get in Touch
             </a>
           </div>
         </div>
@@ -311,7 +310,7 @@ export default function LandingPage() {
             <div className="space-y-8">
               <div className={`space-y-6 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
                 <div className="inline-block px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 text-sm font-medium">
-                  AI-Powered Customer Support
+                  Fully Managed AI Chatbot Service
                 </div>
                 <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight">
                   Answer every
@@ -321,17 +320,17 @@ export default function LandingPage() {
                   <span className="text-amber-500">instantly.</span>
                 </h1>
                 <p className="text-xl text-slate-400 leading-relaxed max-w-xl">
-                  Train Claude AI on your documentation and let it handle customer questions 24/7. 
-                  Capture leads, integrate with your workflow, and never miss an opportunity.
+                  We build, train, and manage a custom AI chatbot for your website. 
+                  You just paste one line of code. We handle the rest.
                 </p>
               </div>
               
               <div className={`flex flex-col sm:flex-row gap-4 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                 <a 
-                  href="https://api.autoreplychat.com/signup" 
+                  href="#contact" 
                   className="px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/20 text-center"
                 >
-                  Start Free Trial
+                  Get Your Chatbot
                 </a>
                 <a 
                   href="#demo" 
@@ -341,17 +340,24 @@ export default function LandingPage() {
                 </a>
               </div>
 
-              <div className={`flex items-center gap-8 pt-6 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
-                <div className="flex -space-x-3">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div 
-                      key={i} 
-                      className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 border-2 border-slate-950"
-                    />
-                  ))}
+              <div className={`flex items-center gap-6 pt-6 flex-wrap ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  30-day free trial
                 </div>
-                <div className="text-sm text-slate-400">
-                  <span className="text-slate-100 font-semibold">500+</span> teams already using AutoReplyChat
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  No technical skills needed
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <svg className="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Live in 24–48 hours
                 </div>
               </div>
             </div>
@@ -373,7 +379,7 @@ export default function LandingPage() {
                     
                     <div className="flex items-start gap-3 justify-end">
                       <div className="flex-1 bg-amber-500 rounded-2xl rounded-tr-none p-4 text-sm text-slate-950 font-medium">
-                        We're open Monday-Friday, 9 AM to 6 PM EST. 
+                        We're open Monday-Friday, 9 AM to 6 PM. 
                         I can help you right now though!
                       </div>
                       <div className="w-8 h-8 rounded-full bg-amber-500 flex-shrink-0 flex items-center justify-center text-slate-950 font-bold text-xs">
@@ -390,7 +396,7 @@ export default function LandingPage() {
                     
                     <div className="flex items-start gap-3 justify-end">
                       <div className="flex-1 bg-amber-500 rounded-2xl rounded-tr-none p-4 text-sm text-slate-950 font-medium">
-                        Absolutely! Every account starts with a 30-day free trial — full access, no credit card required.
+                        Absolutely! Every chatbot starts with a 30-day free trial — full features, no card required.
                       </div>
                       <div className="w-8 h-8 rounded-full bg-amber-500 flex-shrink-0 flex items-center justify-center text-slate-950 font-bold text-xs">
                         AI
@@ -418,12 +424,12 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="font-display text-5xl md:text-6xl font-bold mb-6">
-              Everything you need.
+              We handle everything.
               <br />
-              <span className="text-amber-500">Nothing you don't.</span>
+              <span className="text-amber-500">You get the results.</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Built for modern teams who want AI customer support that actually works. No complex setup, no coding required, just results.
+              No dashboards to learn. No software to manage. We build your chatbot, train it on your content, brand it to your website, and keep it running. You just paste one line of code.
             </p>
           </div>
 
@@ -431,33 +437,33 @@ export default function LandingPage() {
             {[
               {
                 icon: '🧠',
-                title: 'Train on Your Docs',
-                description: 'Upload PDFs, Word documents, CSV files, paste URLs, or scrape your entire website. Claude AI learns your product inside-out and answers questions based on your actual content.'
+                title: 'Trained on Your Content',
+                description: 'We train Claude AI on your website, PDFs, documents, FAQs, and any other material you provide. Your chatbot gives accurate answers based on your actual business information — not generic responses.'
               },
               {
                 icon: '⚡',
-                title: 'Instant Responses',
-                description: 'No wait times. No support tickets. No frustrated customers. Just immediate, accurate answers powered by Claude AI, available around the clock, every day of the year.'
+                title: '24/7 Instant Answers',
+                description: 'Your chatbot never sleeps. Every customer gets an immediate, helpful response — whether it is 2 PM or 2 AM. No more missed enquiries outside business hours.'
               },
               {
                 icon: '📊',
-                title: 'Lead Capture',
-                description: 'Every chat is an opportunity. Automatically collect visitor names, emails, and phone numbers. Get instant email notifications when new prospects engage with your chatbot.'
+                title: 'Lead Capture Built In',
+                description: 'Every conversation is an opportunity. The chatbot collects visitor names, emails, and phone numbers automatically. You get instant email notifications when new leads come in.'
               },
               {
                 icon: '🎨',
-                title: 'Branded Widget',
-                description: 'Customise colours, header text, welcome messages, and widget position to match your brand perfectly. Your chatbot looks and feels like a native part of your website.'
+                title: 'Branded to Your Website',
+                description: 'We match the chatbot colours, styling, and tone to your brand. It looks and feels like a native part of your website — not a third-party bolt-on.'
+              },
+              {
+                icon: '🌍',
+                title: '95+ Languages',
+                description: 'The chatbot automatically detects your visitor\'s language and responds accordingly. Ideal if you serve international customers or multilingual audiences.'
               },
               {
                 icon: '🔐',
-                title: 'Secure & Private',
-                description: 'Enterprise-grade security with encrypted databases, bcrypt password hashing, session-based authentication, and strict multi-tenant isolation. Your data stays yours.'
-              },
-              {
-                icon: '🚀',
-                title: 'One-Line Install',
-                description: 'Copy one line of code, paste it before your closing body tag, and you are done. Works on any website — WordPress, Shopify, Squarespace, custom builds, or anything else.'
+                title: 'Enterprise-Grade Security',
+                description: 'Encrypted databases, secure authentication, and strict data isolation. Your business data is protected and never shared with anyone else.'
               }
             ].map((feature, i) => (
               <div 
@@ -482,12 +488,12 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="font-display text-5xl md:text-6xl font-bold mb-6">
-              Up and running in
+              How it works.
               <br />
-              <span className="text-amber-500">three steps.</span>
+              <span className="text-amber-500">Simple as that.</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Most businesses have their AI chatbot live on their website within five minutes. No technical knowledge required.
+              You tell us about your business. We do the rest. Most chatbots are live within 24 to 48 hours.
             </p>
           </div>
 
@@ -495,18 +501,18 @@ export default function LandingPage() {
             {[
               {
                 step: '01',
-                title: 'Upload Your Content',
-                description: 'Sign up for a free account and upload the content you want your chatbot to know. This can be PDF documents, Word files, CSV spreadsheets, website URLs, or even YouTube video links. AutoReplyChat processes your content and creates a knowledge base that Claude AI uses to answer questions accurately. You can upload as many documents as you need — there are no limits on training content. The more information you provide, the more comprehensive and helpful your chatbot becomes.'
+                title: 'Get in Touch',
+                description: 'Fill in the enquiry form below and tell us about your business. Share your website URL and any documents or FAQs you want the chatbot to know about. We will review everything and get back to you to discuss your needs — whether that is a quick email exchange or a discovery call.'
               },
               {
                 step: '02',
-                title: 'Customise Your Widget',
-                description: 'Make the chatbot yours. Choose your brand colours, write a custom welcome message, set the header text, and pick where the widget appears on your page. The appearance editor gives you a live preview so you can see exactly how it will look before going live. You can also configure bot instructions to control the tone and style of responses — whether you want formal, friendly, technical, or casual. Everything is managed through your dashboard with no code changes needed.'
+                title: 'We Build Your Chatbot',
+                description: 'We scrape your website, process your documents, and train Claude AI on your content. We customise the widget to match your brand — colours, header text, welcome message, and chat style. We configure lead capture, email notifications, and multi-language support. You do not need to touch anything.'
               },
               {
                 step: '03',
-                title: 'Embed and Go Live',
-                description: 'Copy the single line of embed code from your dashboard and paste it into your website. That is it. Your AI chatbot is now live and ready to answer customer questions 24 hours a day, 7 days a week. It works on any platform — WordPress, Shopify, Squarespace, Wix, custom HTML, React apps, or anything that supports a script tag. The widget loads asynchronously so it will not slow down your site, and it is fully responsive on mobile devices.'
+                title: 'Paste One Line of Code',
+                description: 'When your chatbot is ready, we send you a single line of embed code. Paste it on your website and your AI chatbot goes live immediately. It works on any platform — WordPress, Shopify, Squarespace, Wix, or custom-built sites. If you need help adding the code, we will walk you through it.'
               }
             ].map((item, i) => (
               <div key={i} className="flex gap-8 items-start">
@@ -532,8 +538,8 @@ export default function LandingPage() {
               Try it <span className="text-amber-500">right now.</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              This is a real AI assistant trained on our documentation. 
-              Ask it anything about AutoReplyChat and see the quality of responses for yourself.
+              This is a real AI chatbot trained on our own documentation. 
+              Ask it anything and see the quality of responses for yourself.
             </p>
           </div>
 
@@ -545,7 +551,7 @@ export default function LandingPage() {
                   👉 <span className="text-amber-500 font-semibold">Click the chat widget</span> in the bottom-right corner to test our AI
                 </p>
                 <p className="text-sm text-slate-500">
-                  This is the actual widget your customers will interact with — trained on AutoReplyChat's own documentation
+                  This is exactly what your customers will see — trained on your content, branded to your website
                 </p>
               </div>
             </div>
@@ -553,13 +559,13 @@ export default function LandingPage() {
 
           <div className="text-center mt-12">
             <p className="text-slate-500 text-sm mb-4">
-              Impressed? Get your own AI assistant in under 5 minutes.
+              Impressed? Let us build one for your business.
             </p>
             <a 
-              href="https://api.autoreplychat.com/signup" 
+              href="#contact" 
               className="inline-block px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105"
             >
-              Start Your Free Trial
+              Get in Touch
             </a>
           </div>
         </div>
@@ -573,7 +579,7 @@ export default function LandingPage() {
               Built for <span className="text-amber-500">every business.</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Whether you run a local service or a global SaaS, AutoReplyChat handles your customer questions so you can focus on growing your business.
+              Whether you run a local service or a national company, we will build a chatbot that handles your customer questions so you can focus on what matters.
             </p>
           </div>
 
@@ -581,15 +587,15 @@ export default function LandingPage() {
             {[
               {
                 title: 'E-commerce & Retail',
-                description: 'Answer product questions, shipping queries, and return policies instantly. Reduce support tickets by up to 80% while capturing leads from interested browsers who might otherwise leave your site without buying.'
+                description: 'Answer product questions, shipping queries, and return policies instantly. Reduce support tickets by up to 80% while capturing leads from browsers who might otherwise leave without buying.'
               },
               {
                 title: 'Professional Services',
-                description: 'Law firms, accountants, consultants — let your chatbot explain your services, answer common questions about processes and fees, and capture enquiries from potential clients visiting your website outside business hours.'
+                description: 'Law firms, accountants, consultants — let your chatbot explain your services, answer questions about processes and fees, and capture enquiries from potential clients visiting outside business hours.'
               },
               {
                 title: 'SaaS & Technology',
-                description: 'Train your chatbot on your product documentation, API guides, and knowledge base articles. Provide instant technical support to users and free up your engineering team from repetitive support queries.'
+                description: 'Train your chatbot on product documentation, knowledge base articles, and guides. Provide instant technical support and free up your team from repetitive support queries.'
               },
               {
                 title: 'Healthcare & Care Homes',
@@ -605,14 +611,14 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing Teaser */}
+      {/* Pricing Section */}
       <section id="pricing" className="relative py-32 border-t border-slate-800/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="font-display text-5xl md:text-6xl font-bold mb-6">
             Simple, transparent pricing.
           </h2>
           <p className="text-xl text-slate-400 mb-12">
-            Start free. Upgrade when you're ready. No hidden fees, no usage limits.
+            One plan. Everything included. We handle it all.
           </p>
 
           <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-12">
@@ -625,12 +631,13 @@ export default function LandingPage() {
 
             <ul className="space-y-4 mb-8 text-left max-w-md mx-auto">
               {[
-                'Unlimited conversations',
-                'Train on unlimited docs',
-                'Lead capture & notifications',
-                'Custom branding',
+                'Custom-built AI chatbot',
+                'Trained on your content',
+                'Branded to your website',
+                'Lead capture & email notifications',
                 'Multi-language support (95+ languages)',
-                'Priority support',
+                'Ongoing maintenance & updates',
+                'Unlimited conversations',
                 '30-day free trial'
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-slate-300">
@@ -645,10 +652,10 @@ export default function LandingPage() {
             </ul>
 
             <a 
-              href="https://api.autoreplychat.com/signup" 
+              href="#contact" 
               className="inline-block px-8 py-4 bg-amber-500 text-slate-950 rounded-lg font-bold text-lg hover:bg-amber-400 transition-all hover:scale-105 w-full max-w-md"
             >
-              Start Free Trial →
+              Get in Touch →
             </a>
           </div>
         </div>
@@ -662,7 +669,7 @@ export default function LandingPage() {
               Frequently asked <span className="text-amber-500">questions.</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Everything you need to know about AutoReplyChat. Can't find your answer? Try the live demo chatbot — it knows everything about us.
+              Everything you need to know about our managed chatbot service. Still have questions? Try the live demo or get in touch.
             </p>
           </div>
 
@@ -670,43 +677,43 @@ export default function LandingPage() {
             {[
               {
                 q: 'How does AutoReplyChat work?',
-                a: 'Upload your documentation — PDFs, Word files, website URLs, or YouTube videos — and AutoReplyChat uses Claude AI to train a chatbot that answers customer questions based on your content. Add one line of code to your website and the chatbot goes live immediately.'
+                a: 'We build a custom AI chatbot trained on your website content, documents, and any other material you provide. Once it is ready, you paste one line of code on your website and the chatbot goes live. We handle everything — you never need to manage a dashboard or configure anything yourself.'
               },
               {
-                q: 'What file types can I use to train my chatbot?',
-                a: 'AutoReplyChat supports PDF documents, Microsoft Word files (.doc, .docx), plain text files, and CSV spreadsheets up to 20MB each. You can also scrape single web pages or entire websites, and extract transcripts from YouTube videos automatically.'
+                q: 'What do I need to provide?',
+                a: 'It depends on your business. At minimum, we just need your website URL and we will scrape the content. If you have additional documents like PDFs, brochures, or FAQs, we can train the chatbot on those too. We will discuss your specific needs when you get in touch.'
               },
               {
-                q: 'How long does it take to set up?',
-                a: 'Most businesses are up and running in under five minutes. Create an account, upload your content, customise your widget colours, and paste the embed code on your website. Your chatbot starts answering questions immediately.'
+                q: 'How long does setup take?',
+                a: 'Most chatbots are built, trained, and ready to go live within 24 to 48 hours of receiving your content. Complex setups with large amounts of documentation may take a little longer.'
               },
               {
-                q: 'Does AutoReplyChat capture leads?',
-                a: 'Yes. Built-in lead capture collects visitor names, email addresses, and phone numbers during conversations. You receive instant email notifications whenever a new lead engages, so you can follow up quickly.'
+                q: 'Does the chatbot capture leads?',
+                a: 'Yes. The chatbot collects visitor names, email addresses, and phone numbers during conversations. You receive instant email notifications whenever a new lead engages, so you can follow up quickly.'
               },
               {
                 q: 'What AI model powers the chatbot?',
-                a: 'AutoReplyChat is powered by Claude AI from Anthropic, one of the most capable and safe AI models available. Claude provides accurate, helpful responses grounded in your uploaded documentation rather than making things up.'
+                a: 'AutoReplyChat is powered by Claude AI from Anthropic, one of the most capable and safe AI models available. Claude provides accurate, helpful responses grounded in your content rather than making things up.'
               },
               {
-                q: 'Can I customise how the chatbot looks?',
-                a: 'Absolutely. You can customise widget colours, header text, welcome messages, position on your page, and chat bubble style. Everything is done through the dashboard with a live preview so you can see changes before they go live.'
+                q: 'Will the chatbot match my website branding?',
+                a: 'Yes. We fully customise the chatbot colours, header text, welcome message, and position to match your brand. It looks and feels like a native part of your website.'
               },
               {
                 q: 'Is there a free trial?',
-                a: 'Yes. Every new account gets a 30-day free trial with full access to all features including unlimited conversations, document uploads, lead capture, and custom branding. No credit card is required to get started.'
+                a: 'Yes. Every chatbot starts with a 30-day free trial with full features. You can see it working on your website before you pay anything. No credit card is required upfront.'
               },
               {
                 q: 'How much does it cost after the trial?',
-                a: 'After your 30-day free trial, AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, unlimited document training, lead capture, custom branding, multi-language support, and priority support.'
+                a: 'AutoReplyChat is a one-time £300 setup fee plus £99 per month (£399 to start). Everything is included — unlimited conversations, lead capture, custom branding, multi-language support, and ongoing maintenance.'
               },
               {
                 q: 'Is my data secure?',
-                a: 'Yes. We use enterprise-grade security including encrypted PostgreSQL databases, bcrypt password hashing, session-based authentication with automatic timeout, and strict multi-tenant isolation. Your data is never shared with or accessible to other customers.'
+                a: 'Yes. We use enterprise-grade security including encrypted databases, bcrypt password hashing, session-based authentication, and strict data isolation. Your information is never shared with or accessible to other customers.'
               },
               {
-                q: 'Can the chatbot handle multiple languages?',
-                a: 'Yes. AutoReplyChat automatically detects your visitor\'s browser language and can respond in over 95 languages. This makes it ideal for businesses with international customers or multilingual audiences.'
+                q: 'Do I need any technical knowledge?',
+                a: 'No. We handle everything — building, training, branding, and maintaining your chatbot. The only thing you need to do is paste one line of code on your website, and we will help you with that too if needed.'
               }
             ].map((faq, i) => (
               <div key={i} className="bg-slate-900/30 border border-slate-800 rounded-2xl p-6">
@@ -718,27 +725,44 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer CTA */}
-      <section className="relative py-32 border-t border-slate-800/50">
+      {/* Contact Form Section */}
+      <section id="contact" className="relative py-32 border-t border-slate-800/50">
         <div className="gradient-mesh opacity-30" />
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="font-display text-5xl md:text-6xl font-bold mb-6">
-            Ready to automate
-            <br />
-            your <span className="text-amber-500">customer support?</span>
-          </h2>
-          <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
-            Join hundreds of teams using AutoReplyChat to deliver instant, accurate answers to every customer question. Set up in minutes, not weeks.
-          </p>
-          <a 
-            href="https://api.autoreplychat.com/signup" 
-            className="inline-block px-12 py-5 bg-amber-500 text-slate-950 rounded-lg font-bold text-xl hover:bg-amber-400 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-amber-500/20"
-          >
-            Get Started Free
-          </a>
-          <p className="text-slate-500 text-sm mt-6">
-            No credit card required • 30-day free trial • Cancel anytime
-          </p>
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-5xl md:text-6xl font-bold mb-6">
+              Ready to get
+              <br />
+              <span className="text-amber-500">your chatbot?</span>
+            </h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+              Fill in the form below and we will be in touch to discuss your chatbot. Most businesses are live within 48 hours.
+            </p>
+          </div>
+
+          <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+            <iframe 
+              src="https://app.smartsuite.com/form/sba974gi/dN2DczjvGd?header=false" 
+              width="100%" 
+              height="600px" 
+              frameBorder="0"
+              title="AutoReplyChat Enquiry Form"
+              style={{ border: 'none', borderRadius: '12px' }}
+            />
+          </div>
+
+          <div className="text-center mt-8">
+            <p className="text-slate-500 text-sm">
+              Prefer to get in touch directly?{' '}
+              <a href="mailto:mick@autoreplychat.com" className="text-amber-500 hover:text-amber-400 transition-colors">
+                mick@autoreplychat.com
+              </a>
+              {' '}or call{' '}
+              <a href="tel:+447501439406" className="text-amber-500 hover:text-amber-400 transition-colors">
+                07501 439406
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -753,7 +777,7 @@ export default function LandingPage() {
                 <span className="text-slate-100">ReplyChat</span>
               </div>
               <div className="text-sm text-slate-400 space-y-1">
-                <p>AI-powered customer support by{' '}
+                <p>Fully managed AI chatbots by{' '}
                   <a href="https://autaimate.com" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-amber-500 transition-colors">
                     Autaimate
                   </a>
