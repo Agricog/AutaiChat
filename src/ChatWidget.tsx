@@ -27,6 +27,7 @@ interface ChatWidgetProps {
   botMessageBg?: string;
   sendButtonBg?: string;
   leadFormMessage?: string;
+  isTrial?: boolean;
 }
 
 const API_URL = 'https://api.autoreplychat.com/api';
@@ -74,7 +75,8 @@ export default function ChatWidget({
   userMessageBg = "#3b82f6",
   botMessageBg = "#f3f4f6",
   sendButtonBg = "#3b82f6",
-  leadFormMessage = "Want personalized help? Leave your details and we'll follow up"
+  leadFormMessage = "Want personalized help? Leave your details and we'll follow up",
+  isTrial = false
 }: ChatWidgetProps) {
   const { t } = useTranslation();
   
@@ -323,6 +325,13 @@ export default function ChatWidget({
           </button>
         )}
       </div>
+
+      {/* Trial Badge */}
+      {isTrial && (
+        <div style={{ backgroundColor: '#fef3c7', borderBottom: '1px solid #fde68a', padding: '6px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+          <span style={{ fontSize: '12px', color: '#92400e', fontWeight: 500 }}>⚡ Trial Version</span>
+        </div>
+      )}
 
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ backgroundColor: chatWindowBg }}>
