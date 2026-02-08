@@ -5,9 +5,9 @@ export default function DeployTab({ publicId }: Props) {
     navigator.clipboard.writeText(text).then(() => alert('Copied!')).catch(() => alert('Failed to copy'));
   };
 
+  const directLink = `https://autoreplychat.com/chat/${publicId}`;
   const scriptCode = `<script defer src="https://autoreplychat.com/embed.js" data-bot-id="${publicId}"></script>`;
   const iframeCode = `<iframe src="https://autoreplychat.com/chat/${publicId}" style="width: 400px; height: 600px; border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></iframe>`;
-  const directLink = `https://autoreplychat.com/chat/${publicId}`;
 
   const sectionCls = 'bg-slate-50 rounded-xl p-6 mb-5';
 
