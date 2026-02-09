@@ -261,8 +261,16 @@ export default function DashboardPage() {
     }
   };
 
-  const refreshData = () => {
-    if (selectedBot) loadBotData(selectedBot.id);
+  const refreshData = async () => {
+    if (selectedBot) {
+      loadBotData(selectedBot.id);
+      // Also reload bot settings so behavior/appearance tabs stay in sync
+      const botsData = await api.get('/api/dash/bots');
+      const botList = botsData.bots || [];
+      setBots(botList);
+      const updated = botList.find((b: Bot) => b.id === selectedBot.id);
+      if (updated) setSelectedBot(updated);
+    }
   };
 
   // ── Loading state ────────────────────────────────
