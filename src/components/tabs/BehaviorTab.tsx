@@ -44,6 +44,7 @@ export default function BehaviorTab({ customerId, botId, bot, showAlert }: Props
     try {
       await api.post(`/api/bots/${botId}/${endpoint}`, { customerId, ...body });
       showAlert('success', msg);
+      refreshData();
     } catch (err: unknown) {
       showAlert('error', err instanceof Error ? err.message : 'Failed to save');
     }
