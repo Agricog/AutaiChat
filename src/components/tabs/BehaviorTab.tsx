@@ -20,7 +20,7 @@ interface Props {
   refreshData: () => void;
 }
 
-export default function BehaviorTab({ customerId, botId, bot, showAlert }: Props) {
+export default function BehaviorTab({ customerId, botId, bot, showAlert, refreshData }: Props) {
   const [instructions, setInstructions] = useState(bot.bot_instructions || '');
   const [greeting, setGreeting] = useState(bot.greeting_message || 'Thank you for visiting! How may we assist you today?');
   const [greetingBubble, setGreetingBubble] = useState(bot.greeting_bubble_enabled !== false);
