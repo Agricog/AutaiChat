@@ -27,16 +27,19 @@
     var barMessage = settings.barMessage || 'Chat Now';
     var greetingMessage = settings.greetingMessage || 'Thank you for visiting! How may we assist you today?';
     var greetingBubbleEnabled = settings.greetingBubbleEnabled !== false;
+    var iconSize = Math.round(buttonSize * 0.4);
     
     function isMobile() {
       return window.innerWidth <= 500;
     }
     
-    // Inject responsive styles (only needed for close button positioning)
+    // Inject styles
     var style = document.createElement('style');
     style.textContent = '#autoreply-chat-iframe-container{display:none;}' +
       '#autoreply-chat-close-btn{display:none;}' +
-      '#autoreply-chat-close-btn.is-open{display:flex!important;position:fixed!important;top:10px!important;right:10px!important;z-index:10002!important;width:44px!important;height:44px!important;align-items:center!important;justify-content:center!important;border-radius:50%!important;border:none!important;cursor:pointer!important;box-shadow:0 2px 8px rgba(0,0,0,0.2)!important;}';
+      '@media(max-width:500px){' +
+        '#autoreply-chat-close-btn.is-open{display:flex!important;position:fixed!important;top:10px!important;right:10px!important;z-index:10002!important;width:44px!important;height:44px!important;align-items:center!important;justify-content:center!important;border-radius:50%!important;border:none!important;cursor:pointer!important;box-shadow:0 2px 8px rgba(0,0,0,0.2)!important;}' +
+      '}';
     document.head.appendChild(style);
     
     // Create container
@@ -74,12 +77,10 @@
       bubbleInner.appendChild(arrow);
       greetingBubble.appendChild(bubbleInner);
       
-      // Add fade-in animation
       var greetingStyle = document.createElement('style');
       greetingStyle.textContent = '@keyframes autoreply-fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}';
       document.head.appendChild(greetingStyle);
       
-      // Auto-hide after 10 seconds
       setTimeout(function() {
         if (greetingBubble) greetingBubble.style.display = 'none';
       }, 10000);
@@ -88,7 +89,6 @@
     // Create chat button
     var button = document.createElement('div');
     button.id = 'autoreply-chat-button';
-    var iconSize = Math.round(buttonSize * 0.4);
     
     if (buttonStyle === 'bar') {
       button.style.cssText = 'background: ' + chatBubbleBg + '; color: white; padding: 12px 20px; border-radius: 24px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 8px; transition: transform 0.2s, opacity 0.2s;';
@@ -108,9 +108,10 @@
     closeBtn.style.backgroundColor = headerColor;
     closeBtn.innerHTML = '<svg width="24" height="24" fill="' + textColor + '" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
     
-    // Create iframe container
+    // Create iframe container - positioned absolutely so it floats above the button
     var iframeContainer = document.createElement('div');
     iframeContainer.id = 'autoreply-chat-iframe-container';
+    iframeContainer.style.cssText = 'position:absolute;bottom:' + (buttonSize + 16) + 'px;' + buttonPosition + ':0;width:380px;height:550px;';
     
     // Create iframe
     var iframe = document.createElement('iframe');
@@ -124,14 +125,14 @@
     function closeChat() {
       isOpen = false;
       if (isMobile()) {
-        // Reset from fullscreen back to default styles
-        iframeContainer.style.cssText = 'display:none;width:380px;height:550px;margin-bottom:16px;';
+        // Reset from fullscreen back to desktop defaults
+        iframeContainer.style.cssText = 'display:none;position:absolute;bottom:' + (buttonSize + 16) + 'px;' + buttonPosition + ':0;width:380px;height:550px;';
         iframe.style.borderRadius = '12px';
-        button.style.display = 'flex';
         closeBtn.classList.remove('is-open');
       } else {
         iframeContainer.style.display = 'none';
       }
+      button.style.display = 'flex';
       if (buttonStyle === 'bar') {
         button.innerHTML = '<svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><span style="font-weight: 500;">' + barMessage + '</span>';
       } else {
@@ -142,10 +143,9 @@
     // Open chat function
     function openChat() {
       isOpen = true;
-      // Hide greeting when chat opens
       if (greetingBubble) greetingBubble.style.display = 'none';
       if (isMobile()) {
-        // Force fullscreen immediately with inline styles - no reliance on CSS media query
+        // Force fullscreen immediately with inline styles
         iframeContainer.style.cssText = 'display:block;position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;height:100dvh;margin:0;z-index:10000;border-radius:0;';
         iframe.style.borderRadius = '0';
         closeBtn.classList.add('is-open');
